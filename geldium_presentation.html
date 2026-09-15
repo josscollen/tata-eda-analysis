@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geldium AI Collections Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        navy: '#0d1c32',
+        navyLight: '#1b2a4a',
+        accent: '#2980b9',
+        accentGreen: '#27ae60',
+        accentRed: '#c0392b',
+        accentOrange: '#e67e22',
+        accentPurple: '#8e44ad',
+      },
+      fontFamily: {
+        sans: ['Plus Jakarta Sans', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
+<style>
+  .gradient-card {
+    background: linear-gradient(135deg, #0d1c32 0%, #1b2a4a 100%);
+  }
+  .glow {
+    box-shadow: 0 0 40px rgba(41, 128, 185, 0.15);
+  }
+  .flow-arrow {
+    width: 40px;
+    height: 4px;
+    background: linear-gradient(90deg, #c0392b, #e74c3c);
+    position: relative;
+  }
+  .flow-arrow::after {
+    content: '▶';
+    position: absolute;
+    right: -12px;
+    top: -8px;
+    color: #e74c3c;
+    font-size: 16px;
+  }
+  .stat-card {
+    transition: all 0.3s ease;
+  }
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-in {
+    animation: fadeIn 0.6s ease forwards;
+  }
+  .slide { display: none; }
+  .slide.active { display: block; }
+  .nav-dot { width: 10px; height: 10px; border-radius: 50%; background: #ccc; cursor: pointer; transition: all 0.3s; }
+  .nav-dot.active { background: #2980b9; transform: scale(1.3); }
+</style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+<!-- Navigation -->
+<div class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 px-6 py-3 flex items-center justify-between">
+  <div class="flex items-center gap-3">
+    <div class="w-8 h-8 rounded-lg bg-navy flex items-center justify-center">
+      <span class="material-symbols-outlined text-white text-lg">smart_toy</span>
+    </div>
+    <span class="font-bold text-navy">Geldium</span>
+  </div>
+  <div class="flex items-center gap-2">
+    <span class="px-3 py-1 rounded-full bg-blue-50 text-accent text-xs font-semibold">BRIEFING • 5 SLIDES</span>
+    <span class="px-3 py-1 rounded-full bg-red-50 text-accentRed text-xs font-semibold">Confidential</span>
+  </div>
+  <div class="flex items-center gap-4">
+    <div class="flex gap-2" id="navDots"></div>
+    <button onclick="prevSlide()" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+    <button onclick="nextSlide()" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+  </div>
+</div>
+
+<!-- Slide 1: Title -->
+<div class="slide active pt-20 pb-10 px-6 max-w-6xl mx-auto" id="slide1">
+  <div class="gradient-card rounded-2xl p-8 text-white relative overflow-hidden glow">
+    <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-blue-400/10 blur-3xl"></div>
+    <div class="absolute -left-12 -bottom-12 w-52 h-52 rounded-full bg-green-400/10 blur-2xl"></div>
+    <div class="relative z-10">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="px-3 py-1 rounded-full bg-white/10 text-blue-300 text-xs font-semibold uppercase tracking-wider">Strategic Directive</span>
+        <span class="px-3 py-1 rounded-full bg-white/10 text-gray-300 text-xs"><span class="material-symbols-outlined text-sm align-middle">shield</span> Board Briefing</span>
+      </div>
+      <h1 class="text-4xl font-bold mb-4 leading-tight">AI-Powered<br>Collections Strategy</h1>
+      <p class="text-blue-200 text-lg max-w-xl mb-8">Transforming debt recovery from reactive adversarial enforcement into empathetic, high-precision automated financial orchestration.</p>
+      <div class="flex items-center justify-between text-sm text-gray-400">
+        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-blue-300">verified_user</span> Executive Committee & Risk Council</div>
+        <span class="px-2 py-1 rounded bg-white/10">v2.4 Confidential</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 flex items-center justify-between mb-4">
+    <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Core Strategy Pillars</span>
+    <span class="text-xs text-accent flex items-center gap-1">Algorithmic Model Overview <span class="material-symbols-outlined text-sm">trending_up</span></span>
+  </div>
+
+  <div class="grid grid-cols-3 gap-4">
+    <div class="stat-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+      <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center mb-3"><span class="material-symbols-outlined text-accent">autorenew</span></div>
+      <h3 class="font-bold text-navy text-sm mb-1">Autonomous Decision Engine</h3>
+      <p class="text-gray-500 text-xs mb-3">Self-curing accounts through intelligent outreach sequencing</p>
+      <div class="text-2xl font-bold text-accentGreen">68% <span class="text-xs font-normal text-gray-400">Self-Cure Rate</span></div>
+    </div>
+    <div class="stat-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+      <div class="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center mb-3"><span class="material-symbols-outlined text-accentOrange">neurology</span></div>
+      <h3 class="font-bold text-navy text-sm mb-1">Continuous Learning Loop</h3>
+      <p class="text-gray-500 text-xs mb-3">Adaptive model retraining on behavioral feedback</p>
+      <div class="text-2xl font-bold text-accentOrange">24hr <span class="text-xs font-normal text-gray-400">Retraining Cadence</span></div>
+    </div>
+    <div class="stat-card bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+      <div class="w-10 h-10 rounded-lg bg-purple-50 flex items-center justify-center mb-3"><span class="material-symbols-outlined text-accentPurple">gavel</span></div>
+      <h3 class="font-bold text-navy text-sm mb-1">Fiduciary-Grade Compliance</h3>
+      <p class="text-gray-500 text-xs mb-3">Full audit trail with explainable AI decisions</p>
+      <div class="text-2xl font-bold text-accentPurple">100% <span class="text-xs font-normal text-gray-400">Audit Trail</span></div>
+    </div>
+  </div>
+
+  <div class="mt-6 bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+    <div class="flex items-center gap-2 mb-4">
+      <span class="px-2 py-1 rounded-full bg-blue-50 text-accent text-xs font-semibold">Tier-1 Institutional</span>
+    </div>
+    <div class="grid grid-cols-2 gap-6">
+      <div><span class="text-3xl font-bold text-accentGreen">+34.2%</span><br><span class="text-sm text-gray-500">YoY Recovery Uplift vs. Agency Outsourcing</span></div>
+      <div><span class="text-3xl font-bold text-accent">+18pt</span><br><span class="text-sm text-gray-500">NPS Preservation — Customer Sentiment Retained</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 2: How It Works -->
+<div class="slide pt-20 pb-10 px-6 max-w-6xl mx-auto" id="slide2">
+  <div class="mb-6">
+    <span class="px-3 py-1 rounded-full bg-blue-50 text-accent text-xs font-semibold">Slide 2 of 5</span>
+    <h2 class="text-3xl font-bold text-navy mt-3">How the System Works</h2>
+    <p class="text-gray-500 mt-2">From data ingestion to continuous improvement — the closed-loop AI collections pipeline.</p>
+  </div>
+
+  <div class="flex gap-3 mb-6">
+    <span class="px-4 py-2 rounded-lg bg-navy text-white text-sm font-semibold">Signals</span>
+    <span class="px-4 py-2 rounded-lg bg-orange-500 text-white text-sm font-semibold">Cognitive</span>
+    <span class="px-4 py-2 rounded-lg bg-green-500 text-white text-sm font-semibold">Action</span>
+    <span class="px-4 py-2 rounded-lg bg-purple-500 text-white text-sm font-semibold">Tuning</span>
+  </div>
+
+  <div class="space-y-4">
+    <!-- Step 1 -->
+    <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 flex items-start gap-4">
+      <div class="w-12 h-12 rounded-xl bg-navy flex items-center justify-center text-white font-bold text-lg shrink-0">1</div>
+      <div class="flex-1">
+        <h3 class="font-bold text-navy">Data Pipeline</h3>
+        <p class="text-xs text-accent font-semibold uppercase tracking-wider mb-1">Ingestion & Signals</p>
+        <p class="text-gray-600 text-sm">Collects customer demographics, repayment history, credit utilization, income, and employment status in real-time.</p>
+      </div>
+      <div class="text-right shrink-0">
+        <div class="px-3 py-1 rounded-lg bg-blue-50 text-accent text-xs font-bold">100+ Features</div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 flex items-start gap-4">
+      <div class="w-12 h-12 rounded-xl bg-orange-500 flex items-center justify-center text-white font-bold text-lg shrink-0">2</div>
+      <div class="flex-1">
+        <h3 class="font-bold text-navy">Decision Engine</h3>
+        <p class="text-xs text-orange-500 font-semibold uppercase tracking-wider mb-1">Cognitive Processing</p>
+        <p class="text-gray-600 text-sm">Logistic regression model generates risk scores. Business rules classify: High (>0.7), Medium (0.4-0.7), Low (<0.4).</p>
+      </div>
+      <div class="text-right shrink-0">
+        <div class="px-3 py-1 rounded-lg bg-orange-50 text-orange-600 text-xs font-bold">&lt;25ms Latency</div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 flex items-start gap-4">
+      <div class="w-12 h-12 rounded-xl bg-green-500 flex items-center justify-center text-white font-bold text-lg shrink-0">3</div>
+      <div class="flex-1">
+        <h3 class="font-bold text-navy">Action Layer</h3>
+        <p class="text-xs text-green-600 font-semibold uppercase tracking-wider mb-1">Intervention Execution</p>
+        <p class="text-gray-600 text-sm">Low risk: SMS/email. Medium: Payment plans. High: Collections call + hardship support.</p>
+      </div>
+      <div class="text-right shrink-0">
+        <div class="px-3 py-1 rounded-lg bg-green-50 text-green-600 text-xs font-bold">94% Accuracy</div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 flex items-start gap-4">
+      <div class="w-12 h-12 rounded-xl bg-purple-500 flex items-center justify-center text-white font-bold text-lg shrink-0">4</div>
+      <div class="flex-1">
+        <h3 class="font-bold text-navy">Learning Loop</h3>
+        <p class="text-xs text-purple-600 font-semibold uppercase tracking-wider mb-1">Continuous Improvement</p>
+        <p class="text-gray-600 text-sm">Tracks outcomes, feeds back into model, improves future predictions automatically.</p>
+      </div>
+      <div class="text-right shrink-0">
+        <div class="px-3 py-1 rounded-lg bg-purple-50 text-purple-600 text-xs font-bold">24hr Retrain</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 flex gap-3">
+    <span class="px-3 py-1 rounded-full bg-green-50 text-green-700 text-xs font-semibold"><span class="material-symbols-outlined text-sm align-middle">lock</span> Zero PII Leakage</span>
+    <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold"><span class="material-symbols-outlined text-sm align-middle">verified_user</span> SOC-2 Type II</span>
+  </div>
+</div>
+
+<!-- Slide 3: Agentic AI -->
+<div class="slide pt-20 pb-10 px-6 max-w-6xl mx-auto" id="slide3">
+  <div class="mb-6">
+    <span class="px-3 py-1 rounded-full bg-blue-50 text-accent text-xs font-semibold">Slide 3 of 5</span>
+    <h2 class="text-3xl font-bold text-navy mt-3">Role of Agentic AI</h2>
+    <p class="text-gray-500 mt-2">What the AI handles autonomously vs. what requires human oversight.</p>
+  </div>
+
+  <div class="grid grid-cols-2 gap-6">
+    <!-- Autonomous -->
+    <div>
+      <div class="flex items-center gap-2 mb-4">
+        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+        <h3 class="font-bold text-navy">Autonomous (AI Handles)</h3>
+      </div>
+      <div class="space-y-3">
+        <div class="bg-green-50 border border-green-100 rounded-xl p-4 flex items-center gap-3">
+          <span class="material-symbols-outlined text-green-600">sms</span>
+          <span class="text-sm text-gray-700">Send payment reminder SMS/email</span>
+        </div>
+        <div class="bg-green-50 border border-green-100 rounded-xl p-4 flex items-center gap-3">
+          <span class="material-symbols-outlined text-green-600">calculate</span>
+          <span class="text-sm text-gray-700">Generate risk scores daily</span>
+        </div>
+        <div class="bg-green-50 border border-green-100 rounded-xl p-4 flex items-center gap-3">
+          <span class="material-symbols-outlined text-green-600">schedule</span>
+          <span class="text-sm text-gray-700">Adjust outreach timing</span>
+        </div>
+        <div class="bg-green-50 border border-green-100 rounded-xl p-4 flex items-center gap-3">
+          <span class="material-symbols-outlined text-green-600">flag</span>
+          <span class="text-sm text-gray-700">Flag accounts crossing thresholds</span>
+        </div>
+        <div class="bg-green-50 border border-green-100 rounded-xl p-4 flex items-center gap-3">
+          <span class="material-symbols-outlined text-green-600">analytics</span>
+          <span class="text-sm text-gray-700">Track repayment outcomes</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Human -->
+    <div>
+      <div class="flex items-center gap-2 mb-4">
+        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+        <h3 class="font-bold text-navy">Human Oversight Required</h3>
+      </div>
+      <div class="space-y-3">
+        <div class="bg-red-50 border border-red-100 rounded-xl p-4 flex items-center gap-3">
+          <span class="material-symbols-outlined text-red-600">approval</span>
+          <span class="text-sm text-gray-700">Approve hardship payment plans</span>
+        </div>
+        <div class="bg-red-50 border border-red-100 rounded-xl p-4 flex items-center gap-3">
+          <span class="material-symbols-outlined text-red-600">record_voice_over</span>
+          <span class="text-sm text-gray-700">Handle customer disputes</span>
+        </div>
+        <div class="bg-red-50 border border-red-100 rounded-xl p-4 flex items-center gap-3">
+          <span class="material-symbols-outlined text-red-600">rule</span>
+          <span class="text-sm text-gray-700">Make exceptions to rules</span>
+        </div>
+        <div class="bg-red-50 border border-red-100 rounded-xl p-4 flex items-center gap-3">
+          <span class="material-symbols-outlined text-red-600">gavel</span>
+          <span class="text-sm text-gray-700">Escalate legal cases</span>
+        </div>
+        <div class="bg-red-50 border border-red-100 rounded-xl p-4 flex items-center gap-3">
+          <span class="material-symbols-outlined text-red-600">search</span>
+          <span class="text-sm text-gray-700">Review edge cases</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 4: Guardrails -->
+<div class="slide pt-20 pb-10 px-6 max-w-6xl mx-auto" id="slide4">
+  <div class="mb-6">
+    <span class="px-3 py-1 rounded-full bg-blue-50 text-accent text-xs font-semibold">Slide 4 of 5</span>
+    <h2 class="text-3xl font-bold text-navy mt-3">Responsible AI Guardrails</h2>
+    <p class="text-gray-500 mt-2">Safeguards ensuring fairness, transparency, and regulatory compliance.</p>
+  </div>
+
+  <div class="grid grid-cols-2 gap-5">
+    <div class="stat-card bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+      <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-accent text-2xl">balance</span></div>
+      <h3 class="font-bold text-navy mb-2">Fairness</h3>
+      <ul class="text-sm text-gray-600 space-y-2">
+        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-green-500 text-sm mt-0.5">check_circle</span> Audit model monthly for bias</li>
+        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-green-500 text-sm mt-0.5">check_circle</span> Check age, employment, location</li>
+        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-green-500 text-sm mt-0.5">check_circle</span> No group disproportionately flagged</li>
+      </ul>
+    </div>
+
+    <div class="stat-card bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+      <div class="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-accentOrange text-2xl">visibility</span></div>
+      <h3 class="font-bold text-navy mb-2">Explainability</h3>
+      <ul class="text-sm text-gray-600 space-y-2">
+        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-green-500 text-sm mt-0.5">check_circle</span> Plain-language explanations</li>
+        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-green-500 text-sm mt-0.5">check_circle</span> "Flagged due to 3+ missed payments"</li>
+        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-green-500 text-sm mt-0.5">check_circle</span> Logistic regression = transparent</li>
+      </ul>
+    </div>
+
+    <div class="stat-card bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+      <div class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-accentGreen text-2xl">verified_user</span></div>
+      <h3 class="font-bold text-navy mb-2">Compliance</h3>
+      <ul class="text-sm text-gray-600 space-y-2">
+        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-green-500 text-sm mt-0.5">check_circle</span> Follow ECOA, GDPR, FCA</li>
+        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-green-500 text-sm mt-0.5">check_circle</span> Maintain audit trail</li>
+        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-green-500 text-sm mt-0.5">check_circle</span> Document all decisions</li>
+      </ul>
+    </div>
+
+    <div class="stat-card bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+      <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-accentPurple text-2xl">groups</span></div>
+      <h3 class="font-bold text-navy mb-2">Human-in-the-Loop</h3>
+      <ul class="text-sm text-gray-600 space-y-2">
+        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-green-500 text-sm mt-0.5">check_circle</span> High-impact decisions need approval</li>
+        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-green-500 text-sm mt-0.5">check_circle</span> Customers can appeal</li>
+        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-green-500 text-sm mt-0.5">check_circle</span> Humans handle complex cases</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 5: Impact -->
+<div class="slide pt-20 pb-10 px-6 max-w-6xl mx-auto" id="slide5">
+  <div class="mb-6">
+    <span class="px-3 py-1 rounded-full bg-blue-50 text-accent text-xs font-semibold">Slide 5 of 5</span>
+    <h2 class="text-3xl font-bold text-navy mt-3">Expected Business Impact</h2>
+    <p class="text-gray-500 mt-2">Projected outcomes from implementing the AI-powered collections strategy.</p>
+  </div>
+
+  <div class="grid grid-cols-2 gap-6">
+    <div class="gradient-card rounded-2xl p-6 text-white">
+      <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><span class="material-symbols-outlined">trending_up</span> Business KPIs</h3>
+      <div class="space-y-4">
+        <div class="flex items-center justify-between bg-white/10 rounded-xl p-4">
+          <span class="text-sm">Delinquency Rate</span>
+          <span class="font-bold text-green-300">16% → 10%</span>
+        </div>
+        <div class="flex items-center justify-between bg-white/10 rounded-xl p-4">
+          <span class="text-sm">Business Cards</span>
+          <span class="font-bold text-green-300">21.3% → 14%</span>
+        </div>
+        <div class="flex items-center justify-between bg-white/10 rounded-xl p-4">
+          <span class="text-sm">Repayment Rates</span>
+          <span class="font-bold text-green-300">+20-30%</span>
+        </div>
+        <div class="flex items-center justify-between bg-white/10 rounded-xl p-4">
+          <span class="text-sm">Collections Costs</span>
+          <span class="font-bold text-green-300">-40%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+      <h3 class="font-bold text-lg mb-4 flex items-center gap-2 text-navy"><span class="material-symbols-outlined text-accent">people</span> Customer Outcomes</h3>
+      <div class="space-y-4">
+        <div class="flex items-center gap-3 bg-blue-50 rounded-xl p-4">
+          <span class="material-symbols-outlined text-accent">handshake</span>
+          <span class="text-sm text-gray-700">Personalized supportive outreach</span>
+        </div>
+        <div class="flex items-center gap-3 bg-green-50 rounded-xl p-4">
+          <span class="material-symbols-outlined text-accentGreen">bolt</span>
+          <span class="text-sm text-gray-700">Real-time response</span>
+        </div>
+        <div class="flex items-center gap-3 bg-purple-50 rounded-xl p-4">
+          <span class="material-symbols-outlined text-accentPurple">balance</span>
+          <span class="text-sm text-gray-700">Fair treatment for all</span>
+        </div>
+        <div class="flex items-center gap-3 bg-orange-50 rounded-xl p-4">
+          <span class="material-symbols-outlined text-accentOrange">scaling</span>
+          <span class="text-sm text-gray-700">Scalable without adding staff</span>
+        </div>
+        <div class="flex items-center gap-3 bg-red-50 rounded-xl p-4">
+          <span class="material-symbols-outlined text-accentRed">sentiment_satisfied</span>
+          <span class="text-sm text-gray-700">Better customer experience</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center">
+    <p class="text-sm text-gray-500">Prepared by <strong class="text-navy">Joss Collen</strong> | AI Transformation Consultant, Tata iQ | September 2026</p>
+  </div>
+</div>
+
+<!-- Footer Navigation -->
+<div class="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md border-t border-gray-200 px-6 py-3 flex items-center justify-between">
+  <span class="text-xs text-gray-400">Geldium Capital Markets • Institutional Fiduciary Advisory</span>
+  <div class="flex items-center gap-3">
+    <span class="text-xs text-gray-400">Slide <span id="currentSlide">1</span> of 5</span>
+    <div class="flex gap-2" id="navDotsBottom"></div>
+  </div>
+</div>
+
+<script>
+let current = 0;
+const total = 5;
+
+function showSlide(n) {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  document.getElementById('slide' + (n+1)).classList.add('active');
+  document.getElementById('currentSlide').textContent = n + 1;
+  document.querySelectorAll('.nav-dot').forEach((d, i) => d.classList.toggle('active', i === n));
+}
+
+function nextSlide() { current = (current + 1) % total; showSlide(current); }
+function prevSlide() { current = (current - 1 + total) % total; showSlide(current); }
+
+// Create nav dots
+for (let i = 0; i < total; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+  dot.onclick = () => { current = i; showSlide(current); };
+  document.getElementById('navDots').appendChild(dot);
+  document.getElementById('navDotsBottom').appendChild(dot.cloneNode(true));
+}
+</script>
+
+</body>
+</html>
